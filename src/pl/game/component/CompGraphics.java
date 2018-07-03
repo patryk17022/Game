@@ -8,10 +8,12 @@ import java.awt.*;
 
 public class CompGraphics implements Component {
 
-    GameObject gameObject = null;
+    private GameObject gameObject = null;
 
-    Vector2D position= new Vector2D();
-    Vector2D size = new Vector2D();
+    private Vector2D position= new Vector2D();
+    private Vector2D size = new Vector2D();
+
+    //TODO: wygenerować (NIE napisac) getery i settery dla size oraz position
 
     public CompGraphics(int x, int y, int sizeX, int sizeY){
         position = new Vector2D(x,y);

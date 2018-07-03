@@ -21,6 +21,7 @@ public class GameStateManager {
             //  window.getContentPane().setBackground(Color.black);
             window.setVisible(true);
 
+            //TODO 3: dodaj obiekt gracza w sposob podony do tego nizej
             gameObjectList.add(new Box(10, 10, 200, 200));
             gameObjectList.add(new Box(400, 400, 100, 200));
             gameObjectList.add(new Box(600, 200, 100, 50));
