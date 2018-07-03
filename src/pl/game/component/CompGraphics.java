@@ -10,8 +10,13 @@ public class CompGraphics implements Component {
 
     GameObject gameObject = null;
 
+<<<<<<< Updated upstream
     Vector2D position= new Vector2D();
     Vector2D size = new Vector2D();
+=======
+    private Vector2D position= new Vector2D();
+    private Vector2D size = new Vector2D();
+>>>>>>> Stashed changes
 
     public CompGraphics(int x, int y, int sizeX, int sizeY){
         position = new Vector2D(x,y);
@@ -22,7 +27,24 @@ public class CompGraphics implements Component {
 
     }
 
+    public Vector2D getPosition() {
+        return position;
+    }
+
+    public void setPosition(Vector2D position) {
+        this.position = position;
+    }
+
+    public Vector2D getSize() {
+        return size;
+    }
+
+    public void setSize(Vector2D size) {
+        this.size = size;
+    }
+
     public Vector2D getObjectPosition() {
+
         return position;
     }
 
