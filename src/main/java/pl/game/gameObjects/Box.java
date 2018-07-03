@@ -3,11 +3,12 @@ package pl.game.gameObjects;
 import pl.game.component.CompGraphics;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class Box extends GameObject{
 
-    public Box(int x, int y, int sizeX, int sizeY){
-        AddComponent(new CompGraphics(x,y,sizeX,sizeY));
+    public Box(Image image, int x, int y, int sizeX, int sizeY){
+        AddComponent(new CompGraphics(image,x,y,sizeX,sizeY));
     }
 
     @Override

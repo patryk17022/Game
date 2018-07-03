@@ -5,6 +5,7 @@ import pl.game.utility.Vector2D;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Random;
 
 public class CompGraphics implements Component {
 
@@ -13,11 +14,20 @@ public class CompGraphics implements Component {
     private Vector2D position= new Vector2D();
     private Vector2D size = new Vector2D();
 
-    //TODO: wygenerować (NIE napisac) getery i settery dla size oraz position
+    private Image image;
 
-    public CompGraphics(int x, int y, int sizeX, int sizeY){
+    public Image getImage() {
+        return image;
+    }
+
+    public void setImage(Image image) {
+        this.image = image;
+    }
+
+    public CompGraphics(Image image, int x, int y, int sizeX, int sizeY){
         position = new Vector2D(x,y);
         size = new Vector2D(sizeX,sizeY);
+        this.image = image;
     }
 
     public CompGraphics(){
@@ -40,27 +50,23 @@ public class CompGraphics implements Component {
         this.size = size;
     }
 
-    @Override
     public void Update(JFrame window) {
 
     }
 
-    @Override
     public void Draw(JFrame window) {
 
         Graphics2D g2d = (Graphics2D) window.getBufferStrategy().getDrawGraphics();
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2d.setColor(Color.BLUE);
-        g2d.fillRect(position.getX(), position.getY(), size.getX(), size.getY());
+        g2d.drawImage(image,position.getX(),position.getY(),size.getX(),size.getY(),null);
+       // position.addX((int)(new Random().nextGaussian() * new Random().nextInt(5)));
     }
 
-
-    @Override
     public GameObject GetGameObject() {
         return gameObject;
     }
 
-    @Override
     public void SetGameObject(GameObject gameObject) {
         this.gameObject = gameObject;
     }
