@@ -33,4 +33,24 @@ public class Vector2D {
     //TODO: Metoda dodawania do wektora liczby oraz wektora
     //TODO: czli metody addX, addY, add
 
+    public Vector2D addX(int valueX){
+        x+=valueX;
+
+        return this;
+    }
+
+    public Vector2D addY(int valueY){
+        y+=valueY;
+
+        return this;
+    }
+    public Vector2D addX_Y(int valueX, int valueY){
+        x+=valueX;
+        y+=valueY;
+
+        return this;
+    }
+
+
+
 }
