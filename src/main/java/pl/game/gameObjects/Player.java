@@ -1,7 +1,25 @@
 package pl.game.gameObjects;
 
-//TODO 2: klasa ma dziedziczyc po GameObject
-public class Player {
+import pl.game.component.CompGraphics;
+import pl.game.component.CompMovement;
 
-    //TODO 2: konstrukotr w kotrym dodajemy componenty (podpatrz jak w klasie Box jest dodawany CompGraphics
+import javax.swing.*;
+import java.awt.*;
+
+public class Player extends GameObject{
+    @Override
+    public void Update(JFrame window) {
+
+    }
+
+    @Override
+    public void Draw(JFrame window) {
+
+    }
+
+    public Player(Image img, int x, int y, int sizeX, int sizeY, int speed){
+        AddComponent(new CompGraphics(img,x,y,sizeX,sizeY));
+        AddComponent(new CompMovement(speed));
+    }
+
 }

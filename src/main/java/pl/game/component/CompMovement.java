@@ -2,16 +2,39 @@ package pl.game.component;
 
 
 import pl.game.gameObjects.GameObject;
+import pl.game.utility.Vector2D;
 
-//TODO 1: klasa ma implementować interfejs Component
-public class CompMovement{
+import javax.swing.*;
+
+public class CompMovement implements Component{
 
     private GameObject gameObject = null;
+    private Vector2D vector=new Vector2D();
+    private int speed;
 
-    //TODO 1: Ma byc konstruktor w którym możemy określać prędkość poruszania się
+    public void Update(JFrame window) {
+        //poruszanie się postaci
+        int i=0;
+        vector.addX(i++);
+    }
+
+    public void Draw(JFrame window) {
+
+    }
+
+    public GameObject GetGameObject() {
+        return gameObject;
+    }
+
+    public void SetGameObject(GameObject gameObject) {
+        this.gameObject=gameObject;
+    }
+
+    public CompMovement(int speed){
+        this.speed=speed;
+    }
 
     //TODO 1: w klasie to do robimy poruszanie się postaci
     //TODO 1: zmienne x oraz y znajdują się w zmiennej position w CompGraphics ktory bedzie na pewno dołączony do gracza
     //TODO 1: aby się odwołać to trzeba zrobic tak gameObject.<CompGraphics>GetComponent() to nam zwroci CompGraphics w ktorym sa wektory
-    //TODO 1: jesli zaimplementujesz poparawnie metody get i set z interfejsu to gameObject zostanie przypisany i nie bedzie nullerm
 }

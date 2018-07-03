@@ -26,24 +26,19 @@ public class GameStateManager {
             //  window.getContentPane().setBackground(Color.black);
             window.setVisible(true);
 
-
             Image image =null;
             File file;
             ClassLoader classLoader = new GameStateManager().getClass().getClassLoader();
             file = new File(classLoader.getResource("Textures/Crate.png").getFile());
             image = ImageIO.read(file);
 
-            //TODO 3: dodaj obiekt gracza w sposob podony do tego nizej
             int size = 100;
             for(int i = 0 ; i < 10 ; i++)
             {
                 gameObjectList.add(new Box(image,i*size + size, 500, size, size));
             }
 
-          //  gameObjectList.add(new Box(10, 10, 200, 200));
-         //   gameObjectList.add(new Box(400, 400, 100, 200));
-        //    gameObjectList.add(new Box(600, 200, 100, 50));
-            gameObjectList.add(new Player(250, 30, 100, 50, 10)); //dodany obiekt gracza
+            gameObjectList.add(new Player(image,250, 300, 25, 25, 10)); //dodany obiekt gracza
 
             while (true) {
 
