@@ -3,6 +3,7 @@ package pl.game.gameStates;
 import pl.game.gameObjects.Box;
 import pl.game.gameObjects.GameObject;
 import pl.game.utility.KeyListerner;
+import pl.game.gameObjects.Player;
 
 import java.awt.*;
 import java.io.File;
@@ -39,12 +40,15 @@ public class GameStateManager {
                 gameObjectList.add(new Box(image,i*size + size, 500, size, size));
             }
 
+          //  gameObjectList.add(new Box(10, 10, 200, 200));
+         //   gameObjectList.add(new Box(400, 400, 100, 200));
+        //    gameObjectList.add(new Box(600, 200, 100, 50));
+            gameObjectList.add(new Player(250, 30, 100, 50, 10)); //dodany obiekt gracza
+
             while (true) {
 
                 KeyListerner.clearBuffer();
                 window.createBufferStrategy(2);
-
-
 
                 for (GameObject gameObject : gameObjectList) {
                     gameObject.UpdateGameObject(window);
@@ -53,6 +57,7 @@ public class GameStateManager {
 
                 window.getBufferStrategy().show();
                 Thread.sleep(10);
+
 
             }
         }catch(Exception ex){
