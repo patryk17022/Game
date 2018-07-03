@@ -6,14 +6,21 @@ import pl.game.utility.Vector2D;
 import javax.swing.*;
 import java.awt.*;
 
-
-
-public class CompGraphics extends JComponent implements Component {
+public class CompGraphics implements Component {
 
     GameObject gameObject = null;
 
     Vector2D position= new Vector2D();
     Vector2D size = new Vector2D();
+
+    public CompGraphics(int x, int y, int sizeX, int sizeY){
+        position = new Vector2D(x,y);
+        size = new Vector2D(sizeX,sizeY);
+    }
+
+    public CompGraphics(){
+
+    }
 
     public Vector2D getObjectPosition() {
         return position;
@@ -38,12 +45,13 @@ public class CompGraphics extends JComponent implements Component {
 
     @Override
     public void Draw(JFrame window) {
-        window.getContentPane().add(this);
+
+        Graphics2D g2d = (Graphics2D) window.getBufferStrategy().getDrawGraphics();
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        g2d.setColor(Color.BLUE);
+        g2d.fillRect(position.getX(), position.getY(), size.getX(), size.getY());
     }
 
-    public void paint(Graphics g) {
-        g.drawRect (position.getX(), position.getY(), size.getX(), size.getY());
-    }
 
     @Override
     public GameObject GetGameObject() {

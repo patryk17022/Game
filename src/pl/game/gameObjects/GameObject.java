@@ -14,7 +14,7 @@ public abstract class GameObject {
 
     private List<Component> components = new ArrayList<Component>();
 
-    protected void UpdateGameObject(JFrame window){
+    public void UpdateGameObject(JFrame window){
         Update(window);
 
         for(Component comp : components){
@@ -22,7 +22,7 @@ public abstract class GameObject {
         }
     }
 
-    protected void DrawGameObject(JFrame window){
+    public void DrawGameObject(JFrame window){
         Draw(window);
 
         for(Component comp : components){

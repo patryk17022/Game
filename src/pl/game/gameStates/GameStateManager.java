@@ -1,8 +1,8 @@
 package pl.game.gameStates;
 
+import pl.game.gameObjects.Box;
 import pl.game.gameObjects.GameObject;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,26 +14,33 @@ public class GameStateManager {
 
 
     public static void main(String[] a) {
-        JFrame window = new JFrame();
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.setBounds(10, 10, 1280,720);
-        window.getContentPane().setBackground(Color.black);
-        window.setVisible(true);
+        try {
+            JFrame window = new JFrame("Game");
+            window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            window.setSize( 1280, 720);
+            //  window.getContentPane().setBackground(Color.black);
+            window.setVisible(true);
+
+            gameObjectList.add(new Box(10, 10, 200, 200));
+            gameObjectList.add(new Box(400, 400, 100, 200));
+            gameObjectList.add(new Box(600, 200, 100, 50));
+
+            while (true) {
+
+                window.createBufferStrategy(2);
+
+                for (GameObject gameObject : gameObjectList) {
+                    gameObject.UpdateGameObject(window);
+                    gameObject.DrawGameObject(window);
+                }
+
+                window.getBufferStrategy().show();
+                Thread.sleep(10);
 
 
-
-        while(true) {
-
-
-
-            for(GameObject gameObject : gameObjectList){
-                gameObject.Update(window);
-                gameObject.Draw(window);
             }
-
-            window.repaint();
-
-
+        }catch(Exception ex){
+            ex.printStackTrace();
         }
     }
 }
