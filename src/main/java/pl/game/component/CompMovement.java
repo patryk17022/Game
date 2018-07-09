@@ -10,6 +10,7 @@ public class CompMovement implements Component{
 
     private GameObject gameObject = null;
     private Vector2D vector=new Vector2D();
+
     private int speed;
 
     public void Update(JFrame window) {

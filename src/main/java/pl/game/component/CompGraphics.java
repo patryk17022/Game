@@ -5,7 +5,6 @@ import pl.game.utility.Vector2D;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Random;
 
 public class CompGraphics implements Component {
 
@@ -60,7 +59,6 @@ public class CompGraphics implements Component {
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2d.setColor(Color.BLUE);
         g2d.drawImage(image,position.getX(),position.getY(),size.getX(),size.getY(),null);
-       // position.addX((int)(new Random().nextGaussian() * new Random().nextInt(5)));
     }
 
     public GameObject GetGameObject() {
