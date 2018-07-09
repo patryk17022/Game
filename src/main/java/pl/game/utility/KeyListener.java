@@ -2,54 +2,46 @@ package pl.game.utility;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+import java.util.List;
 
 public class KeyListener extends KeyAdapter {
 
-    private static volatile Character[] pressed = new Character[4];
-
+    private static volatile List<Character> pressed = new ArrayList<Character>();
 
     public static synchronized boolean isKeyPressed(Character key){
-        for(int i = 0 ; i < pressed.length; i++){
-            if(key == pressed[i]){
+        for(Character elem : pressed){
+            if(key == elem){
                 return true;
             }
         }
         return false;
     }
 
-    public static synchronized Character[] getPressed() {
+    public static synchronized List<Character> getPressed() {
         return pressed;
     }
 
     @Override
     public synchronized void keyReleased(KeyEvent event) {
-        for(int i = 0 ; i < pressed.length; i++)
-        {
-            if(pressed[i] == event.getKeyChar())
-            {
-                pressed[i] = null;
-                return;
-            }
-        }
+
+        int index = pressed.indexOf(event.getKeyChar());
+        if(index >= 0)
+            pressed.remove(index);
+
     }
 
     @Override
     public synchronized void keyPressed(KeyEvent event){
-        for(int i = 0 ; i < pressed.length; i++)
-        {
-            if(pressed[i] == null || pressed[i] == event.getKeyChar())
-            {
-                pressed[i] = event.getKeyChar();
+        for(Character elem : pressed){
+            if(event.getKeyChar() == elem){
                 return;
             }
         }
+        pressed.add(event.getKeyChar());
     }
 
     public synchronized static void clearBuffer(){
-        if(pressed[0] != null) {
-            for (int i = 0; i < pressed.length; i++) {
-                pressed[i] = null;
-            }
-        }
+        pressed.clear();
     }
 }

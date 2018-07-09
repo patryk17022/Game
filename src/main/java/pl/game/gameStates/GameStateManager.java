@@ -1,43 +1,53 @@
 package pl.game.gameStates;
 
 
-import pl.game.utility.KeyListener;
-import javax.swing.JFrame;
+import javax.swing.*;
+import java.util.ArrayList;
+import java.util.List;
 
-public class GameStateManager {
+enum ActualState {
 
-    public static double deltaTime;
+    EXIT(-1),
+    GAME_STATE(0);
 
-    public static void main(String[] a) {
-        try {
-            JFrame window = new JFrame("Game");
-            window.addKeyListener(new KeyListener());
-            window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            window.setSize(1280, 720);
-            //  window.getContentPane().setBackground(Color.black);
+    private int id;
 
-            window.setVisible(true);
-
-            StateGame st = new StateGame();
-
-            long last_time = System.nanoTime();
-            boolean isGameOn = true;
-
-            while (isGameOn) {
-
-                long time = System.nanoTime();
-                deltaTime = (time - last_time) / 1000000000.0;
-                last_time = time;
-
-                window.createBufferStrategy(2);
-
-                st.Update(window);
-
-                window.getBufferStrategy().show();
-
-            }
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
+    ActualState(int id){
+        this.id = id;
     }
+
+    public int getId(){
+        return id;
+    }
+}
+
+public class GameStateManager{
+
+    private List<StateComponent> states = new ArrayList<StateComponent>();
+    private ActualState actualState;
+
+    public GameStateManager() throws Exception{
+        states.add(new StateGame());
+        actualState = ActualState.GAME_STATE;
+    }
+
+    public boolean Update(JFrame window) throws Exception
+    {
+
+        states.get(actualState.getId()).Update(window);
+
+        if(actualState == ActualState.EXIT){
+            return false;
+        }
+        return true;
+    }
+
+    public void setActualState(ActualState newState){
+        actualState = newState;
+    }
+
+    public ActualState getActualState(){
+        return actualState;
+    }
+
 }

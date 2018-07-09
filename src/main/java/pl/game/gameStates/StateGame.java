@@ -1,5 +1,6 @@
 package pl.game.gameStates;
 
+import pl.game.GameEngine;
 import pl.game.gameObjects.Box;
 import pl.game.gameObjects.GameObject;
 import pl.game.gameObjects.Player;
@@ -11,7 +12,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StateGame {
+public class StateGame implements StateComponent{
 
     public List<GameObject> gameObjectList = new ArrayList<GameObject>();
 
@@ -19,7 +20,7 @@ public class StateGame {
 
         Image image = null;
         File file;
-        ClassLoader classLoader = new GameStateManager().getClass().getClassLoader();
+        ClassLoader classLoader = new GameEngine().getClass().getClassLoader();
         file = new File(classLoader.getResource("Textures/Crate.png").getFile());
         image = ImageIO.read(file);
 
@@ -29,10 +30,17 @@ public class StateGame {
             gameObjectList.add(new Box(image,i*size + size, 500, size, size));
         }
 
-        gameObjectList.add(new Player(image,250, 300, 25, 25, 100)); //dodany obiekt gracza
+        file = new File(classLoader.getResource("Textures/Sackboy.png").getFile());
+        image = ImageIO.read(file);
+
+        gameObjectList.add(new Player(image,250, 300, 100, 100, 100)); //dodany obiekt gracza
     }
 
     public void Update(JFrame window) throws Exception{
+
+        Graphics graph = window.getBufferStrategy().getDrawGraphics();
+        graph.setColor(Color.black);
+        graph.fillRect(0, 0, GameEngine.getWidth(), GameEngine.getHeight());
 
         for (GameObject gameObject : gameObjectList) {
             gameObject.UpdateGameObject(window);
