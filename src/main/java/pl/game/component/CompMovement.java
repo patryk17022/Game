@@ -11,12 +11,34 @@ public class CompMovement implements Component{
 
     private GameObject gameObject = null;
 
+
     private int speed;
 
     public void Update(JFrame window) {
-        //TODO 1: zmienne x oraz y znajdują się w zmiennej position w CompGraphics ktory bedzie na pewno dołączony do gracza
-        //TODO 1: aby się odwołać to trzeba zrobic tak gameObject.<CompGraphics>GetComponent() to nam zwroci CompGraphics w ktorym sa wektory
-        //TODO 1: i do nich dodajemy te wartosci o ile chcemy sie przesunac plus warto pomnozyc predkosc przed deltaTime (poczytaj co to jest jak nie to ci powiem
+
+        int x=0;
+        int y=0;
+        double delta=0;
+        delta=GameEngine.deltaTime;
+
+        x = (int) Math.round(speed * delta);
+        y = (int) Math.round(speed * delta);
+
+        if(KeyListener.isKeyPressed('w')) {
+            gameObject.<CompGraphics>GetComponent().getObjectPosition().addY(-y);
+        }
+        if(KeyListener.isKeyPressed('s')){
+            gameObject.<CompGraphics>GetComponent().getObjectPosition().addY(y);
+        }
+        if(KeyListener.isKeyPressed('a')){
+            gameObject.<CompGraphics>GetComponent().getObjectPosition().addX(-x);
+        }
+        if(KeyListener.isKeyPressed('d')){
+            gameObject.<CompGraphics>GetComponent().getObjectPosition().addX(x);
+        }
+
+
+
     }
 
     public void Draw(JFrame window) {

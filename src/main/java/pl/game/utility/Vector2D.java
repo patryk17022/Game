@@ -1,5 +1,7 @@
 package pl.game.utility;
 
+import java.util.Vector;
+
 public class Vector2D {
 
     private int x = 0;
@@ -40,9 +42,15 @@ public class Vector2D {
 
         return this;
     }
-    public Vector2D addX_Y(int valueX, int valueY){
+    public Vector2D add(int valueX, int valueY){
         x+=valueX;
         y+=valueY;
+
+        return this;
+    }
+    public Vector2D add(Vector2D vector){
+
+        this.add(vector);
 
         return this;
     }
