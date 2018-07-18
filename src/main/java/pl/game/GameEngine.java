@@ -27,8 +27,9 @@ public class GameEngine {
     }
 
     private static void Initialize() throws Exception{
-        window = new JFrame("Game");
+        ResourceManager.loadTextureFromFile("Textures//textures.txt");
         KeyListener key = new KeyListener();
+        window = new JFrame("Game");
         window.addKeyListener(key);
         window.addMouseListener(key);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -36,7 +37,7 @@ public class GameEngine {
         window.getContentPane().setBackground(Color.black);
         window.setVisible(true);
         manager = new GameStateManager();
-        ResourceManager.loadTextureFromFile("Textures//textures.txt");
+
     }
 
     private static void run() throws Exception{
