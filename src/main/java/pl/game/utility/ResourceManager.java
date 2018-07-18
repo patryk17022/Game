@@ -34,7 +34,7 @@ public class ResourceManager {
                 int ktory=1;
                 String imagePath="";
                 String textureName = "";
-                for (int i = 0; i <= line.length(); i++) {
+                for (int i = 0; i < line.length(); i++) {
 
                     if ((line.charAt(i) == ' ') && ktory==1) {
                         ktory=2;
