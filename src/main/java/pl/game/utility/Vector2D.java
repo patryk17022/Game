@@ -49,7 +49,7 @@ public class Vector2D {
         return this;
     }
     public Vector2D add(Vector2D a){
-        
+
         this.x+=a.getX();
         this.y+=a.getY();
 
