@@ -16,8 +16,11 @@ public class StateGame implements StateComponent{
 
     public List<GameObject> gameObjectList = new ArrayList<GameObject>();
 
-    public StateGame() throws Exception{
+    private GameStateManager gameStateManager;
 
+
+    public StateGame(GameStateManager gsm) throws Exception{
+        gameStateManager = gsm;
         Image image = null;
         File file;
         ClassLoader classLoader = new GameEngine().getClass().getClassLoader();

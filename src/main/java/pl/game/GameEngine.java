@@ -26,7 +26,9 @@ public class GameEngine {
 
     private static void Initialize() throws Exception{
         window = new JFrame("Game");
-        window.addKeyListener(new KeyListener());
+        KeyListener key = new KeyListener();
+        window.addKeyListener(key);
+        window.addMouseListener(key);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setBounds(0,0,width, height);
         window.getContentPane().setBackground(Color.black);
@@ -50,6 +52,7 @@ public class GameEngine {
             isGameOn = manager.Update(window);
 
             window.getBufferStrategy().show();
+
         }
     }
 

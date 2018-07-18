@@ -45,7 +45,7 @@ public class ResourceManager {
     {
         ResourceManager resourceManager= new ResourceManager();
 
-        resourceManager.getFile("C:\\Users\\SQ054\\Desktop\\Monia\\Moje_projekty\\gra\\przyklad\\przyklad.txt");
+        resourceManager.getFile("C:\\Users\\SQ004\\Desktop\\przyklad.txt");
     }
 
 }

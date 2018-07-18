@@ -8,7 +8,8 @@ import java.util.List;
 enum ActualState {
 
     EXIT(-1),
-    GAME_STATE(0);
+    MENU(0),
+    GAME_STATE(1);
 
     private int id;
 
@@ -27,18 +28,21 @@ public class GameStateManager{
     private ActualState actualState;
 
     public GameStateManager() throws Exception{
-        states.add(new StateGame());
+        states.add(new StateMenu(this));
+        states.add(new StateGame(this));
+
         actualState = ActualState.GAME_STATE;
     }
 
     public boolean Update(JFrame window) throws Exception
     {
 
-        states.get(actualState.getId()).Update(window);
-
         if(actualState == ActualState.EXIT){
             return false;
         }
+
+        states.get(actualState.getId()).Update(window);
+
         return true;
     }
 

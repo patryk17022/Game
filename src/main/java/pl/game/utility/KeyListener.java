@@ -1,13 +1,29 @@
 package pl.game.utility;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
+import com.sun.scenario.effect.impl.sw.sse.SSEBrightpassPeer;
+
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-public class KeyListener extends KeyAdapter {
+public class KeyListener extends KeyAdapter implements MouseListener {
 
     private static volatile List<Character> pressed = new ArrayList<Character>();
+
+    private static volatile Map<MOUSE_BUTTON,Boolean> mousePressed = new HashMap<MOUSE_BUTTON, Boolean>();
+
+    private static volatile  Vector2D mousePosiiton;
+
+    public enum MOUSE_BUTTON{
+        LEFT,
+        RIGHT
+    }
 
     public static synchronized boolean isKeyPressed(Character key){
         for(Character elem : pressed){
@@ -43,5 +59,48 @@ public class KeyListener extends KeyAdapter {
 
     public synchronized static void clearBuffer(){
         pressed.clear();
+    }
+
+    public static Boolean isMousePressed(MOUSE_BUTTON btn){
+        if(mousePressed.containsKey(btn))
+            return mousePressed.get(btn);
+        else
+            return false;
+    }
+
+    public void mouseClicked(MouseEvent e) {
+
+    }
+
+    public void mousePressed(MouseEvent e) {
+        if(e.getButton()== MouseEvent.BUTTON1)
+        {
+            mousePressed.put(MOUSE_BUTTON.LEFT,true);
+        }else  if(e.getButton()== MouseEvent.BUTTON2) {
+            mousePressed.put(MOUSE_BUTTON.RIGHT, true);
+        }
+
+        mousePosiiton = new Vector2D(e.getX(),e.getY());
+    }
+
+    public static Vector2D getMousePosiiton(){
+        return  mousePosiiton;
+    }
+
+    public void mouseReleased(MouseEvent e) {
+        if(e.getButton()== MouseEvent.BUTTON1)
+        {
+            mousePressed.put(MOUSE_BUTTON.LEFT,false);
+        }else  if(e.getButton()== MouseEvent.BUTTON2) {
+            mousePressed.put(MOUSE_BUTTON.RIGHT, false);
+        }
+    }
+
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    public void mouseExited(MouseEvent e) {
+
     }
 }
