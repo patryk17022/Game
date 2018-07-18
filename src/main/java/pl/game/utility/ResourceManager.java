@@ -27,23 +27,25 @@ public class ResourceManager {
             BufferedReader bufferedReader = new BufferedReader(file);
 
             String line=bufferedReader.readLine();
-            line+=" ";
+
             while (line != null) {
 
+                line+=" ";
                 int ktory=1;
                 String imagePath="";
                 String textureName = "";
                 for (int i = 0; i <= line.length(); i++) {
 
-                    if ((line.charAt(i) == ' '|| line.charAt(i)==13) && ktory==1) {
+                    if ((line.charAt(i) == ' ') && ktory==1) {
                         ktory=2;
-                    } else if ((line.charAt(i) == ' '|| line.charAt(i)==13) && ktory==2) {
+                    } else if ((line.charAt(i) == ' ') && ktory==2) {
                         getTexture(textureName);
                         File filePath = new File(classLoader.getResource(imagePath).getFile());
                         Image image = ImageIO.read(filePath);
                         map.put(textureName, image);
                         textureName = "";
                         imagePath="";
+                        line="";
                         ktory=1;
                     }
                     else if(ktory==1){
@@ -54,7 +56,6 @@ public class ResourceManager {
                     }
                 }
                 line=bufferedReader.readLine();
-                line+=" ";
             }
             bufferedReader.close();
         }
