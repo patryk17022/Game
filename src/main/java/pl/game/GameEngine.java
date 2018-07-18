@@ -2,9 +2,11 @@ package pl.game;
 
 import pl.game.gameStates.GameStateManager;
 import pl.game.utility.KeyListener;
+import pl.game.utility.ResourceManager;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowEvent;
 
 public class GameEngine {
 
@@ -34,6 +36,7 @@ public class GameEngine {
         window.getContentPane().setBackground(Color.black);
         window.setVisible(true);
         manager = new GameStateManager();
+        ResourceManager.loadTextureFromFile("Textures//textures.txt");
     }
 
     private static void run() throws Exception{
@@ -54,6 +57,7 @@ public class GameEngine {
             window.getBufferStrategy().show();
 
         }
+        return;
     }
 
     public static void main(String[] a) {
@@ -61,6 +65,7 @@ public class GameEngine {
 
             Initialize();
             run();
+            window.dispatchEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSING));
 
         } catch (Exception ex) {
             ex.printStackTrace();

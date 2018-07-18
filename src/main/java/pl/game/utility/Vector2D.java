@@ -56,4 +56,8 @@ public class Vector2D {
         return this;
     }
 
+    public boolean isInRectangle(int xr, int yr, int width, int height){
+        return (x >= xr && x <= xr+width && y >= yr && y <= yr+height) ? true : false;
+    }
+
 }

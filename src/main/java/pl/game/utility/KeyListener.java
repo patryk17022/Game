@@ -25,6 +25,19 @@ public class KeyListener extends KeyAdapter implements MouseListener {
         RIGHT
     }
 
+    public enum KEYBOARD_SPECIAL{
+        ESCAPE(27);
+
+        private int value;
+        KEYBOARD_SPECIAL(int val){
+            value = val;
+        }
+
+        public int get(){
+            return value;
+        }
+    }
+
     public static synchronized boolean isKeyPressed(Character key){
         for(Character elem : pressed){
             if(key == elem){
@@ -32,6 +45,10 @@ public class KeyListener extends KeyAdapter implements MouseListener {
             }
         }
         return false;
+    }
+
+    public static synchronized boolean isKeyPressed(KEYBOARD_SPECIAL key){
+        return isKeyPressed((char)key.get());
     }
 
     public static synchronized List<Character> getPressed() {

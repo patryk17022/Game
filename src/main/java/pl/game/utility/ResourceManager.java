@@ -10,18 +10,15 @@ import java.util.Map;
 
 public class ResourceManager {
 
-    private Image image;
+    private static Map<String, Image>map= new HashMap<String, Image>();
 
-    private Map<String, Image>map= new HashMap<String, Image>();
+    public static Image getTexture(String textureName) {
 
-    public Image getTexture(String textureName) {
-
-        image=map.get(textureName);
-
+        Image image=map.get(textureName);
         return image;
     }
 
-    public void getFile(String path) {
+    public static void loadTextureFromFile(String path) {
 
         try {
             ClassLoader classLoader = new GameEngine().getClass().getClassLoader();
@@ -61,13 +58,6 @@ public class ResourceManager {
         }
         catch(Exception ex) { ex.printStackTrace();}
 
-    }
-
-    public static void main(String [ ] args)
-    {
-        ResourceManager resourceManager= new ResourceManager();
-
-        resourceManager.getFile("Textures\\textures.txt");
     }
 
 }

@@ -1,6 +1,8 @@
 package pl.game.gameStates;
 
 
+import pl.game.utility.KeyListener;
+
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,11 +33,15 @@ public class GameStateManager{
         states.add(new StateMenu(this));
         states.add(new StateGame(this));
 
-        actualState = ActualState.GAME_STATE;
+        actualState = ActualState.MENU;
     }
 
     public boolean Update(JFrame window) throws Exception
     {
+
+        if(KeyListener.isKeyPressed(KeyListener.KEYBOARD_SPECIAL.ESCAPE)){
+            actualState = (ActualState.EXIT);
+        }
 
         if(actualState == ActualState.EXIT){
             return false;
