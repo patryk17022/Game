@@ -27,12 +27,13 @@ public class ResourceManager {
             BufferedReader bufferedReader = new BufferedReader(file);
 
             String line=bufferedReader.readLine();
+            line+=" ";
             while (line != null) {
 
                 int ktory=1;
                 String imagePath="";
                 String textureName = "";
-                for (int i = 0; i < line.length(); i++) {
+                for (int i = 0; i <= line.length(); i++) {
 
                     if ((line.charAt(i) == ' '|| line.charAt(i)==13) && ktory==1) {
                         ktory=2;
@@ -53,11 +54,19 @@ public class ResourceManager {
                     }
                 }
                 line=bufferedReader.readLine();
+                line+=" ";
             }
             bufferedReader.close();
         }
         catch(Exception ex) { ex.printStackTrace();}
 
     }
+    public static void main(String [ ] args)
+    {
+        ResourceManager resourceManager= new ResourceManager();
 
+        resourceManager.loadTextureFromFile("Textures//textures.txt");
+
+        return;
+    }
 }
