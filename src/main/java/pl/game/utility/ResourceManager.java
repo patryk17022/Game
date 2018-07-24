@@ -39,7 +39,6 @@ public class ResourceManager {
                     if ((line.charAt(i) == ' ') && ktory==1) {
                         ktory=2;
                     } else if ((line.charAt(i) == ' ') && ktory==2) {
-                        getTexture(textureName);
                         File filePath = new File(classLoader.getResource(imagePath).getFile());
                         Image image = ImageIO.read(filePath);
                         map.put(textureName, image);
@@ -62,12 +61,5 @@ public class ResourceManager {
         catch(Exception ex) { ex.printStackTrace();}
 
     }
-    public static void main(String [ ] args)
-    {
-        ResourceManager resourceManager= new ResourceManager();
 
-        resourceManager.loadTextureFromFile("Textures//textures.txt");
-
-        return;
-    }
 }

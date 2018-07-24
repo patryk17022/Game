@@ -12,38 +12,12 @@ public class CompMovement implements Component{
 
     private GameObject gameObject = null;
 
-
     Vector2D velocity=new Vector2D();
     private int speed;
-    private int maxSpeed;
-
-    public void constSpeed(){
-
-        double delta=0;
-        delta=GameEngine.deltaTime;
-
-        velocity.setX((int) Math.round(speed * delta));
-        velocity.setY((int) Math.round(speed * delta));
-    }
-
-    public void accelerationSpeed(){
-        double delta=0;
-        delta=GameEngine.deltaTime;
-
-        velocity.setX((int) Math.round(speed * delta + velocity.getX()));
-        velocity.setY((int) Math.round(speed * delta + velocity.getY()));
-    }
-
-    public void accelerationSlow(){
-        double delta=0;
-        delta=GameEngine.deltaTime;
-
-        velocity.setX((int) Math.round(speed * delta - velocity.getX()));
-        velocity.setY((int) Math.round(speed * delta - velocity.getY()));
-    }
 
     public void slowChange(){
-        constSpeed();
+
+        velocity=new Vector2D();
 
         int movement = (int)(speed*GameEngine.deltaTime);
 
@@ -68,52 +42,12 @@ public class CompMovement implements Component{
 
     public void fastChange(){
 
-           accelerationSpeed();
-        int movement = (int)(speed*GameEngine.deltaTime);
-
-        if(KeyListener.isKeyPressed('w')){
-            velocity.setY(-movement);
-        }
-
-        if(KeyListener.isKeyPressed('s')){
-            velocity.setY(movement);
-        }
-
-        if(KeyListener.isKeyPressed('a')){
-            velocity.setX(-movement);
-        }
-
-        if(KeyListener.isKeyPressed('d')){
-            velocity.setX(movement);
-        }
-
-        /*
-        * zwolnienie
-
-        if(KeyListener.isKeyPressed('w')){
-            velocity.setY(-movement+2);
-        }
-
-        if(KeyListener.isKeyPressed('s')){
-            velocity.setY(movement-2);
-        }
-
-        if(KeyListener.isKeyPressed('a')){
-            velocity.setX(-movement+2);
-        }
-
-        if(KeyListener.isKeyPressed('d')){
-            velocity.setX(movement-2);
-        }
-
-        * */
         gameObject.<CompGraphics>GetComponent().getObjectPosition().add(velocity.getX(),velocity.getY());
 
     }
 
     public void Update(JFrame window) {
 
-       // slowChange();
         fastChange();
 
     }
