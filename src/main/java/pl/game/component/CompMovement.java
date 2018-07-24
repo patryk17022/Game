@@ -45,42 +45,70 @@ public class CompMovement implements Component{
     public void slowChange(){
         constSpeed();
 
-        if(KeyListener.isKeyPressed('w')) {
-            gameObject.<CompGraphics>GetComponent().getObjectPosition().addY(-velocity.getY());
+        int movement = (int)(speed*GameEngine.deltaTime);
+
+        if(KeyListener.isKeyPressed('w')){
+            velocity.setY(-movement);
         }
+
         if(KeyListener.isKeyPressed('s')){
-            gameObject.<CompGraphics>GetComponent().getObjectPosition().addY(velocity.getY());
+            velocity.setY(movement);
         }
+
         if(KeyListener.isKeyPressed('a')){
-            gameObject.<CompGraphics>GetComponent().getObjectPosition().addX(-velocity.getX());
+            velocity.setX(-movement);
         }
+
         if(KeyListener.isKeyPressed('d')){
-            gameObject.<CompGraphics>GetComponent().getObjectPosition().addX(velocity.getX());
+            velocity.setX(movement);
         }
+
+        gameObject.<CompGraphics>GetComponent().getObjectPosition().add(velocity.getX(),velocity.getY());
     }
 
     public void fastChange(){
 
-        int i=0;
-        if(i<2){
            accelerationSpeed();
-           i++;
-        } else {
-            accelerationSlow();
+        int movement = (int)(speed*GameEngine.deltaTime);
+
+        if(KeyListener.isKeyPressed('w')){
+            velocity.setY(-movement);
         }
 
-        if(KeyListener.isKeyPressed('w')) {
-            gameObject.<CompGraphics>GetComponent().getObjectPosition().addY(-velocity.getY());
-        }
         if(KeyListener.isKeyPressed('s')){
-            gameObject.<CompGraphics>GetComponent().getObjectPosition().addY(velocity.getY());
+            velocity.setY(movement);
         }
+
         if(KeyListener.isKeyPressed('a')){
-            gameObject.<CompGraphics>GetComponent().getObjectPosition().addX(-velocity.getX());
+            velocity.setX(-movement);
         }
+
         if(KeyListener.isKeyPressed('d')){
-            gameObject.<CompGraphics>GetComponent().getObjectPosition().addX(velocity.getX());
+            velocity.setX(movement);
         }
+
+        /*
+        * zwolnienie
+
+        if(KeyListener.isKeyPressed('w')){
+            velocity.setY(-movement+2);
+        }
+
+        if(KeyListener.isKeyPressed('s')){
+            velocity.setY(movement-2);
+        }
+
+        if(KeyListener.isKeyPressed('a')){
+            velocity.setX(-movement+2);
+        }
+
+        if(KeyListener.isKeyPressed('d')){
+            velocity.setX(movement-2);
+        }
+
+        * */
+        gameObject.<CompGraphics>GetComponent().getObjectPosition().add(velocity.getX(),velocity.getY());
+
     }
 
     public void Update(JFrame window) {
