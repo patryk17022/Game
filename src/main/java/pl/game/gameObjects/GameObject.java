@@ -30,21 +30,21 @@ public abstract class GameObject {
         }
     }
 
-    public List<Component> getComponents() {
-        return components;
-    }
+
 
     public void AddComponent(Component comp){
         comp.SetGameObject(this);
         components.add(comp);
     }
 
-    public <T> T GetComponent(){
+    public <T extends Component> T GetComponent( Class<T> type){
         for(Component comp : components){
-            if (((T)comp) != null){
-                return (T)comp;
+
+            if (type.isInstance(comp)){
+                return type.cast(comp);
             }
         }
         return null;
     }
+
 }

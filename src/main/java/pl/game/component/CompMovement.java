@@ -24,17 +24,19 @@ public class CompMovement implements Component{
         x = (int) Math.round(speed * delta);
         y = (int) Math.round(speed * delta);
 
+        CompGraphics graph = gameObject.GetComponent(CompGraphics.class);
+
         if(KeyListener.isKeyPressed('w')) {
-            gameObject.<CompGraphics>GetComponent().getObjectPosition().addY(-y);
+            graph.getObjectPosition().addY(-y);
         }
         if(KeyListener.isKeyPressed('s')){
-            gameObject.<CompGraphics>GetComponent().getObjectPosition().addY(y);
+            graph.getObjectPosition().addY(y);
         }
         if(KeyListener.isKeyPressed('a')){
-            gameObject.<CompGraphics>GetComponent().getObjectPosition().addX(-x);
+            graph.getObjectPosition().addX(-x);
         }
         if(KeyListener.isKeyPressed('d')){
-            gameObject.<CompGraphics>GetComponent().getObjectPosition().addX(x);
+            graph.getObjectPosition().addX(x);
         }
 
 

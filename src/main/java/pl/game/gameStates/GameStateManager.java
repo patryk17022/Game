@@ -33,7 +33,7 @@ public class GameStateManager{
         states.add(new StateMenu(this));
         states.add(new StateGame(this));
 
-        actualState = ActualState.MENU;
+        actualState = ActualState.GAME_STATE;
     }
 
     public boolean Update(JFrame window) throws Exception

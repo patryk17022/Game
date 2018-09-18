@@ -3,22 +3,28 @@ package pl.game.utility;
 import com.sun.org.apache.xpath.internal.operations.Bool;
 import com.sun.scenario.effect.impl.sw.sse.SSEBrightpassPeer;
 
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class KeyListener extends KeyAdapter implements MouseListener {
+public class KeyListener extends KeyAdapter implements MouseListener, MouseMotionListener {
 
     private static volatile List<Character> pressed = new ArrayList<Character>();
 
     private static volatile Map<MOUSE_BUTTON,Boolean> mousePressed = new HashMap<MOUSE_BUTTON, Boolean>();
 
-    private static volatile  Vector2D mousePosiiton;
+    private static volatile  Vector2D mousePosiiton = new Vector2D();
+
+    public void mouseDragged(MouseEvent e) {
+
+    }
+
+    public void mouseMoved(MouseEvent e) {
+
+        mousePosiiton = new Vector2D(e.getX(),e.getY());
+    }
 
     public enum MOUSE_BUTTON{
         LEFT,
@@ -97,7 +103,6 @@ public class KeyListener extends KeyAdapter implements MouseListener {
             mousePressed.put(MOUSE_BUTTON.RIGHT, true);
         }
 
-        mousePosiiton = new Vector2D(e.getX(),e.getY());
     }
 
     public static Vector2D getMousePosiiton(){

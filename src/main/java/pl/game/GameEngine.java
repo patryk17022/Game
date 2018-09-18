@@ -32,6 +32,7 @@ public class GameEngine {
         window = new JFrame("Game");
         window.addKeyListener(key);
         window.addMouseListener(key);
+        window.addMouseMotionListener(key);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setBounds(0,0,width, height);
         window.getContentPane().setBackground(Color.black);
